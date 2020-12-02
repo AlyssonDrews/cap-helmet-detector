@@ -1,0 +1,3 @@
+opencv_annotation --annotations=saida.txt --images=positivas/  
+
+opencv_createsamples -info saida.txt -bg negativas.txt -vec vetor.vec -w 24 -h 24 
