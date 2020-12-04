@@ -68,14 +68,14 @@ while True:
 
 
     for (x,y,w,h) in objetos:
-        cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
-        if objetos.all():
-            if name not in face_names:
+        if name not in face_names:
+            cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
+            if objetos.all():
                 cv2.imwrite("logs/last_image.png", img)
-                logs = codecs.open("logs/logs.txt", 'w', 'UTF-8')
+                logs = codecs.open("logs/logs.txt", 'w+', 'UTF-8')
                 logs.write("Suspeito detectado "+date+"\n")
-            logs = codecs.open("logs/logs.txt", 'w', 'UTF-8')
-            logs.write(name+" foi o ultimo a ser detectado como suspeito "+date+"\n")
+        logs = codecs.open("logs/logs_pessoa_conhecida.txt", 'w+', 'UTF-8')
+        logs.write(name+" foi o ultimo funcionario a ser detectado " +date+"\n")
 
     cv2.imshow('Detector', img)
     cv2.imshow('Edge', edge_image)
