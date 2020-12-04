@@ -1,3 +1,11 @@
+### Seleção dos objetos especificos que a Inteligência Artificial deve detectar
+
 opencv_annotation --annotations=saida.txt --images=positivas/  
 
+### Pré treino da IA, onde é criado os vetores baseado nas imagens positivas e negativas
+
 opencv_createsamples -info saida.txt -bg negativas.txt -vec vetor.vec -w 24 -h 24 
+
+### Treino da IA, com todas as informações colocadas anteriormente
+
+opencv_traincascade -data treinamento -vec vetor.vec -bg negativas.txt -numPos 260 -numNeg 300 -w 24 -h 24 -precalcValBufSize 2048 -precalcIdxBufSize 2048 -numStages 80 -acceptanceRatioBreakValue 1.0e-5
